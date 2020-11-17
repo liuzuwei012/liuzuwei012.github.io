@@ -34,29 +34,32 @@
   </head>
   <body>
     <div id="app">
-      <div class="date">11月5号</div>
-      <div class="time">12：12</div>
+      <div class="date"></div>
+      <div class="time"></div>
     </div>
     <script>
-        let dateDom = document.querySelector('.date'),timeDom = document.querySelector('.time');
-        setInterval(()=>{
-            let datetime = new Date();
-            let year = datetime.getFullYear(),
-                month = pad(datetime.getMonth() + 1),
-                day = pad(datetime.getDate()),
-                hour = pad(datetime.getHours()),
-                minute = pad(datetime.getMinutes()),
-                second = pad(datetime.getSeconds());
-            
-            dateDom.innerText = `${year}年${month}月${day}号`;
-            timeDom.innerText = `${hour}:${minute}:${second}`;
-        },1000)
+      let dateDom = document.querySelector(".date"),
+        timeDom = document.querySelector(".time");
+      setInterval(get(), 1000);
 
-        function pad(num){
-            let str;
-            str = num.toString().padStart(2,0)
-            return str
-        }
+      function pad(num) {
+        let str;
+        str = num.toString().padStart(2, 0);
+        return str;
+      }
+      function get() {
+        let datetime = new Date();
+        let year = datetime.getFullYear(),
+          month = pad(datetime.getMonth() + 1),
+          day = pad(datetime.getDate()),
+          hour = pad(datetime.getHours()),
+          minute = pad(datetime.getMinutes()),
+          second = pad(datetime.getSeconds());
+
+        dateDom.innerText = `${year}年${month}月${day}号`;
+        timeDom.innerText = `${hour}:${minute}:${second}`;
+        return get;
+      }
     </script>
   </body>
 </html>
