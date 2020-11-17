@@ -1,11 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-</head>
-<body>
-    11
-</body>
+    <style>
+      html {
+        background-color: black;
+        height: 100%;
+      }
+      #app,
+      body {
+        height: 100%;
+      }
+      #app {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+      .date,
+      .time {
+        color: white;
+      }
+      .date {
+        font-size: 100px;
+      }
+      .time {
+        margin-top: 50px;
+        font-size: 150px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="date">11月5号</div>
+      <div class="time">12：12</div>
+    </div>
+    <script>
+        let dateDom = document.querySelector('.date'),timeDom = document.querySelector('.time');
+        setInterval(()=>{
+            let datetime = new Date();
+            let year = datetime.getFullYear(),
+                month = pad(datetime.getMonth() + 1),
+                day = pad(datetime.getDate()),
+                hour = pad(datetime.getHours()),
+                minute = pad(datetime.getMinutes()),
+                second = pad(datetime.getSeconds());
+            
+            dateDom.innerText = `${year}年${month}月${day}号`;
+            timeDom.innerText = `${hour}:${minute}:${second}`;
+        },1000)
+
+        function pad(num){
+            let str;
+            str = num.toString().padStart(2,0)
+            return str
+        }
+    </script>
+  </body>
 </html>
